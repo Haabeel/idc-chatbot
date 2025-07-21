@@ -70,7 +70,7 @@ Please rewrite the answer in a clear, helpful, and chatbot-friendly tone.
     else:
         return "AskIDC: No answer found."
 
-'''
+
 if __name__ == "__main__":
     print("Script Running")
 
@@ -82,4 +82,4 @@ if __name__ == "__main__":
         
         response = ask_idc_chatbot(user_query)
         print(response)
-'''     
+   
