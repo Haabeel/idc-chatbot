@@ -1,3 +1,4 @@
+'''
 # scraper-python.py
 # To run this script, paste `python scraper-python.py` in the terminal
 
@@ -28,3 +29,4 @@ print(page_text[:500])
 
 if __name__ == '__main__':
     scrape()
+'''
