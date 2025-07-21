@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from urllib.parse import urljoin, urlparse
 import time
 
-# Initialize Chrome
+
 cService = ChromeService(executable_path="/Users/tushi/Downloads/chromedriver-mac-arm64/chromedriver")
 options = webdriver.ChromeOptions()
 driver = webdriver.Chrome(service=cService, options=options)

@@ -119,3 +119,6 @@ vectordb = Chroma.from_texts(texts=all_text_blocks, embedding=embedding_model, p
 vectordb.persist()
 
 print("Vector DB updated with all files in /data.")
+
+print("Loaded documents:", vectordb._collection.count())
+
