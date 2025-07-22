@@ -9,7 +9,11 @@ from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_huggingface import HuggingFaceEmbeddings
 
-DATA_DIR = "./data"
+# Resolve data folder path relative to this script    { CHANGED THE PATH TO DATA FOLDER WHICH MAKES IT EASY FOR OTHERS.}
+DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),"data"))
+
+if not os.path.exists(DATA_DIR):
+    raise FileNotFoundError(f"DATA_DIR not found at: {DATA_DIR}")
 
 def extract_text_from_csv(file_path):
     try:
@@ -30,12 +34,10 @@ def extract_text_from_ppt_with_ocr(file_path):
     for slide in prs.slides:
         slide_text = ""
 
-        # Extract text from text boxes
         for shape in slide.shapes:
             if shape.has_text_frame:
                 slide_text += shape.text + "\n"
 
-        # OCR from images in PPT
         for shape in slide.shapes:
             if shape.shape_type == 13:  # Picture
                 try:
@@ -90,7 +92,6 @@ def extract_text_from_pdf(file_path):
     
     return extracted_texts
 
-
 # Gather all text blocks
 all_text_blocks = []
 
@@ -119,6 +120,11 @@ vectordb = Chroma.from_texts(texts=all_text_blocks, embedding=embedding_model, p
 vectordb.persist()
 
 print("Vector DB updated with all files in /data.")
+print("Done! You can now query the vector database.")
 
-print("Loaded documents:", vectordb._collection.count())
+#new line  
+print(f"Indexed {len(all_text_blocks)} documents/text blocks.")
+
+# Clean up
+
 
