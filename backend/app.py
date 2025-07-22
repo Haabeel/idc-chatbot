@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from main import ask_idc_chatbot
+from backend.main_buffer import ask_idc_chatbot
 from flask_cors import CORS
 
 app = Flask(__name__)
