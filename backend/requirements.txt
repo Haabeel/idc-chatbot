@@ -109,6 +109,7 @@ fasteners==0.19
 fastjsonschema @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/python-fastjsonschema_1699238535414/work
 ffmpy==0.6.0
 filelock @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/filelock_1701804468261/work
+filetype==1.2.0
 flake8 @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_8fyuzhayos/croot/flake8_1708965272166/work
 Flask @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_b6zka5i2cn/croot/flask_1716545886197/work
 flask-cors==6.0.1
@@ -122,7 +123,7 @@ fuzzywuzzy==0.18.0
 gensim @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_5cdoei19at/croot/gensim_1725057952958/work
 gitdb @ file:///tmp/build/80754af9/gitdb_1617117951232/work
 GitPython @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_ebpnpowk3c/croot/gitpython_1720455037823/work
-google-ai-generativelanguage==0.6.15
+google-ai-generativelanguage==0.6.18
 google-api-core==2.25.1
 google-api-python-client==2.174.0
 google-auth==2.40.3
@@ -213,8 +214,10 @@ langchain==0.3.26
 langchain-chroma==0.2.4
 langchain-community==0.3.27
 langchain-core==0.3.68
+langchain-google-genai==2.1.8
 langchain-google-vertexai==2.0.27
 langchain-huggingface==0.3.0
+langchain-openai==0.3.28
 langchain-text-splitters==0.3.8
 langsmith==0.4.4
 lazy-object-proxy @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_56nrnaax6j/croot/lazy-object-proxy_1712908715628/work
@@ -471,10 +474,12 @@ testresources==2.0.2
 testscenarios==0.5.0
 testtools==2.7.2
 text-unidecode @ file:///Users/ktietz/demo/mc3/conda-bld/text-unidecode_1629401354553/work
+textblob==0.19.0
 textdistance @ file:///tmp/build/80754af9/textdistance_1612461398012/work
 threadpoolctl @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_efa5bvb6vi/croot/threadpoolctl_1719407806403/work
 three-merge @ file:///tmp/build/80754af9/three-merge_1607553261110/work
 tifffile @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/tifffile_1699243525693/work
+tiktoken==0.9.0
 tinycss2 @ file:///Users/builder/cbouss/perseverance-python-buildout/croot/tinycss2_1699250325251/work
 tldextract @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_86f1bw02kg/croot/tldextract_1723064389239/work
 tokenizers==0.21.2
