@@ -9,8 +9,8 @@ from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_huggingface import HuggingFaceEmbeddings
 
-# Resolve data folder path relative to this script    { CHANGED THE PATH TO DATA FOLDER WHICH MAKES IT EASY FOR OTHERS.}
-DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__),"data"))
+# Resolve data folder path relative to this script
+DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "data"))
 
 if not os.path.exists(DATA_DIR):
     raise FileNotFoundError(f"DATA_DIR not found at: {DATA_DIR}")
@@ -31,24 +31,25 @@ def extract_text_from_ppt_with_ocr(file_path):
     prs = Presentation(file_path)
     extracted_texts = []
 
-    for slide in prs.slides:
-        slide_text = ""
+    for slide_num, slide in enumerate(prs.slides):
+        slide_text = f"[Slide {slide_num+1}]\n"
 
         for shape in slide.shapes:
-            if shape.has_text_frame:
-                slide_text += shape.text + "\n"
-
-        for shape in slide.shapes:
-            if shape.shape_type == 13:  # Picture
-                try:
+            try:
+                if shape.has_text_frame:
+                    slide_text += shape.text + "\n"
+                elif shape.shape_type == 13:  # Picture
                     image = shape.image
-                    image_bytes = image.blob
-                    img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-                    ocr_text = pytesseract.image_to_string(img)
-                    if ocr_text.strip():
-                        slide_text += "\n[Image OCR Text]:\n" + ocr_text + "\n"
-                except Exception as e:
-                    print(f"OCR failed on image in PPT: {e}")
+                    if image.ext.lower() == "png":
+                        image_bytes = image.blob
+                        img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+                        ocr_text = pytesseract.image_to_string(img)
+                        if ocr_text.strip():
+                            slide_text += f"\n[Image OCR Text]:\n{ocr_text}\n"
+                elif hasattr(shape, "text"):
+                    slide_text += shape.text + "\n"
+            except Exception as e:
+                print(f"Error processing shape in slide {slide_num+1}: {e}")
 
         if slide_text.strip():
             extracted_texts.append(slide_text.strip())
@@ -80,7 +81,7 @@ def extract_text_from_pdf(file_path):
                     img_pil = Image.open(io.BytesIO(image_bytes)).convert("RGB")
                     ocr_text = pytesseract.image_to_string(img_pil)
                     if ocr_text.strip():
-                        page_combined_text += f"\n[Image OCR Page {page_num+1} Img {img_index+1}]:\n" + ocr_text
+                        page_combined_text += f"\n[Image OCR Page {page_num+1} Img {img_index+1}]:\n{ocr_text}"
                 except Exception as e:
                     print(f"OCR failed on image in PDF page {page_num+1}: {e}")
 
@@ -89,7 +90,7 @@ def extract_text_from_pdf(file_path):
 
     except Exception as e:
         print(f"Error reading PDF: {e}")
-    
+
     return extracted_texts
 
 # Gather all text blocks
@@ -121,10 +122,4 @@ vectordb.persist()
 
 print("Vector DB updated with all files in /data.")
 print("Done! You can now query the vector database.")
-
-#new line  
 print(f"Indexed {len(all_text_blocks)} documents/text blocks.")
-
-# Clean up
-
-

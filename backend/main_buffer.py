@@ -11,8 +11,8 @@ from symspellpy.symspellpy import SymSpell, Verbosity
 
 
 whitelist = {"etihad", "rta", "audi", "idc", "j.p. morgan", "pepsico", "hamriyah free zone authority","fujairah government authority","abhu dhabi fund for development","Al mazroui medical center","cyber","idc's","IDC's","cybersecurity"
-             "galaxkey"}
-
+             "galaxkey","sahatna",""
+             ""}
 
 
 load_dotenv()
